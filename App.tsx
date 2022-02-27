@@ -19,10 +19,35 @@ function getNextMealIdea() : string  {
   return foodList[randomIndex];
 }
 
+function renderFoodOptions() {
+  return foodList.map((option) => {
+    return <FoodOption>
+      {option}
+    </FoodOption>;
+  });
+}
+
+function FoodOption(props : string) {
+  return (
+    <View style={{
+      backgroundColor: '#f0ad4e',
+      padding: 10,
+      borderRadius: 20,
+      marginBottom: 5
+    }}>
+      <Text style={{
+        fontSize: 12,
+        textAlign: 'center'
+      }}>
+        {props.children} <Ionicons name="md-trash" size={16} color="#d9534f" />
+      </Text>
+    </View>
+  );
+}
+
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
   const [modalVisible, setModalVisible] = useState(false);
-  
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -66,6 +91,7 @@ export default function App() {
       >
         <View style={modalStyles.centeredView}>
           <View style={modalStyles.modalView}>
+            {renderFoodOptions()}
             <TextInput placeholder='Add new food option' style={styles.input} />
             <Pressable
               style={[modalStyles.button, modalStyles.buttonOpen]}
@@ -78,7 +104,6 @@ export default function App() {
             >
               <Text style={modalStyles.textStyle}>Close</Text>
             </Pressable>
-            
           </View>
         </View>
       </Modal>
