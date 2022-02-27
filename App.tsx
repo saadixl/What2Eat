@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, ImageBackground, Modal, Pressable, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { Alert, ImageBackground, Modal, Pressable, TextInput, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -7,7 +7,7 @@ const foodList : string[] = [
   'Seafood Fried Rice - Selera',
   'Chicken Rice - Food Republic',
   'Sandwitch - Subway',
-  'Daily Bowl - Stuff\'d',
+  'Daily Bowl - Stuffd',
   'Burger - McDonalds',
   'Makisan',
   'Ayam Gebrek'
@@ -66,13 +66,19 @@ export default function App() {
       >
         <View style={modalStyles.centeredView}>
           <View style={modalStyles.modalView}>
-            <Text style={modalStyles.modalText}>Hello World!</Text>
+            <TextInput placeholder='Add new food option' style={styles.input} />
+            <Pressable
+              style={[modalStyles.button, modalStyles.buttonOpen]}
+            >
+              <Text style={modalStyles.textStyle}>Add new option</Text>
+            </Pressable>
             <Pressable
               style={[modalStyles.button, modalStyles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={modalStyles.textStyle}>Hide Modal</Text>
+              <Text style={modalStyles.textStyle}>Close</Text>
             </Pressable>
+            
           </View>
         </View>
       </Modal>
@@ -134,6 +140,13 @@ const styles = StyleSheet.create({
     borderRadius: '50%',
     borderColor: '#FFC106',
     borderWidth: 5
+  },
+  input: {
+    height: 40,
+    marginBottom: 10,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 20
   }
 });
 
@@ -163,7 +176,9 @@ const modalStyles = StyleSheet.create({
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    margin: 5,
+    width: '100%'
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -174,10 +189,6 @@ const modalStyles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
     textAlign: "center"
   }
 });
