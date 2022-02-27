@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 
-const foodList = [
+const foodList : string[] = [
   'Seafood Fried Rice - Selera',
   'Chicken Rice - Food Republic',
   'Sandwitch - Subway',
@@ -12,7 +12,7 @@ const foodList = [
   'Ayam Gebrek'
 ];
 
-function getNextMealIdea() {
+function getNextMealIdea() : string  {
   const len = foodList.length;
   const randomIndex = Math.floor((Math.random() * len - 1) + 1);
   return foodList[randomIndex];
