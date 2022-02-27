@@ -20,14 +20,14 @@ function getNextMealIdea() : string  {
 }
 
 function renderFoodOptions() {
-  return foodList.map((option) => {
-    return <FoodOption>
+  return foodList.map((option, i) => {
+    return <FoodOption key={i}>
       {option}
     </FoodOption>;
   });
 }
 
-function FoodOption(props : string) {
+function FoodOption(props : any) {
   return (
     <View style={{
       backgroundColor: '#f0ad4e',
@@ -69,7 +69,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.food}>
-          {randomFood}
+          <Text>{randomFood}</Text>
         </View>
       <TouchableOpacity
         style={styles.generateButton}
@@ -85,7 +85,6 @@ export default function App() {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     width: 250
   },
   lunchImageSrc: { 
-    borderRadius: '50%',
+    borderRadius: 125,
     borderColor: '#FFC106',
     borderWidth: 5
   },
