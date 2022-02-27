@@ -69,7 +69,11 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.food}>
-          <Text>{randomFood}</Text>
+          <Text style={{ 
+            color: '#fff',
+            fontSize: 25,
+            fontWeight: '500'
+          }}>{randomFood}</Text>
         </View>
       <TouchableOpacity
         style={styles.generateButton}
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
   },
   generateButtonText: {
     fontSize: 18,
-    fontFamily: 'Helvetica',
+    fontFamily: 'normal',
     fontWeight: '600',
     letterSpacing: 1.5
   },
@@ -147,10 +151,9 @@ const styles = StyleSheet.create({
   food: {
     textAlign: 'center',
     padding: 30,
-    fontFamily: 'Roboto',
     fontSize: 25,
     fontWeight: '500',
-    color: '#FFF',
+    color: '#fff',
     marginTop: 150
   },
   lunchImageWrapper: {
