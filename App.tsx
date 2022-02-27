@@ -181,10 +181,10 @@ const modalStyles = StyleSheet.create({
     width: '100%'
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#5cb85c",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#292b2c",
   },
   textStyle: {
     color: "white",
