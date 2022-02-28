@@ -6,17 +6,18 @@ import FoodSuggestion from './components/FoodSuggestion';
 import GenerateButton from './components/GenerateButton';
 import Header from './components/Header';
 
-const foodList : string[] = [
-  'Seafood Fried Rice - Selera',
-  'Chicken Rice - Food Republic',
-  'Sandwitch - Subway',
-  'Daily Bowl - Stuffd',
-  'Burger - McDonalds',
-  'Makisan',
-  'Ayam Gebrek'
-];
+let initialFoodMap : object = {
+  'Seafood Fried Rice - Selera': true,
+  'Chicken Rice - Food Republic': true,
+  'Sandwitch - Subway': true,
+  'Daily Bowl - Stuffd': true,
+  'Burger - McDonalds': true,
+  'Makisan': true,
+  'Ayam Gebrek': true
+};
 
-function getNextMealIdea() : string  {
+function getNextMealIdea(foodMap : object) : string  {
+  const foodList = Object(foodMap).keys();
   const len = foodList.length;
   const randomIndex = Math.floor((Math.random() * len - 1) + 1);
   return foodList[randomIndex];
@@ -25,7 +26,8 @@ function getNextMealIdea() : string  {
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
   const [modalVisible, setModalVisible] = useState(true);
-
+  const [foodMap, setFoodMap] = useState(initialFoodMap);
+  console.log("root foodMap", foodMap);
   return (
     <View style={styles.container}>
 
@@ -36,10 +38,11 @@ export default function App() {
       <FoodSuggestion randomFood={randomFood} />
 
       <GenerateButton 
-        setRandomFood={() => { setRandomFood(getNextMealIdea()) }} />
+        setRandomFood={() => { setRandomFood(getNextMealIdea(foodMap)) }} />
 
-      <SettingsModal 
-        foodList={foodList} 
+      <SettingsModal
+        foodMap={foodMap}
+        setFoodMap={setFoodMap}
         modalVisible={modalVisible} 
         setModalVisible={setModalVisible} />
 

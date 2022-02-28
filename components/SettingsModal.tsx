@@ -2,8 +2,8 @@ import React,  { useState } from 'react';
 import { Modal, Text, TextInput, View, Pressable, StyleSheet } from 'react-native';
 import FoodOption from './FoodOption';
 
-function renderFoodOptions(foodList : any) {
-    return foodList.map((option: string, i: number) => {
+function renderFoodOptions(foodMap : any) {
+    return Object.keys(foodMap).map((option: string, i: number) => {
         return <FoodOption key={i}>
             {option}
         </FoodOption>;
@@ -11,7 +11,9 @@ function renderFoodOptions(foodList : any) {
 }
 
 export default function SettingsModal(props : any) {
-    const { modalVisible, setModalVisible, foodList } = props;
+    const { modalVisible, setModalVisible } = props;
+    const [foodMap, setFoodMap] = useState(props.foodMap);
+    const [text, onChangeText] = useState('');
     return (
         <Modal
             animationType="slide"
@@ -22,16 +24,28 @@ export default function SettingsModal(props : any) {
         }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    {renderFoodOptions(foodList)}
-                    <TextInput placeholder='Add new food option' style={styles.input} />
+                    {renderFoodOptions(foodMap)}
+                    <TextInput
+                      onChangeText={onChangeText}
+                      value={text}
+                      placeholder='Add new food option' 
+                      style={styles.input} />
                     <Pressable
-                    style={[styles.button, styles.buttonOpen]}
+                      style={[styles.button, styles.buttonOpen]}
+                      onPress={() => {
+                        const updatedFoodMap = {
+                          ...foodMap,
+                          [text]: true
+                        };
+                        setFoodMap(updatedFoodMap);
+                        props.setFoodMap(updatedFoodMap);
+                      }}
                     >
                     <Text style={styles.textStyle}>Add new option</Text>
                     </Pressable>
                     <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => setModalVisible(!modalVisible)}
                     >
                     <Text style={styles.textStyle}>Close</Text>
                     </Pressable>
