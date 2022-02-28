@@ -16,8 +16,8 @@ let initialFoodMap : object = {
   'Ayam Gebrek': true
 };
 
-function getNextMealIdea(foodMap : object) : string  {
-  const foodList = Object(foodMap).keys();
+function getNextMealIdea(foodMap : object) : string {
+  const foodList = Object.keys(foodMap);
   const len = foodList.length;
   const randomIndex = Math.floor((Math.random() * len - 1) + 1);
   return foodList[randomIndex];
