@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import SettingsModal from './components/SettingsModal';
 import FoodSuggestion from './components/FoodSuggestion';
+import GenerateButton from './components/GenerateButton';
+import Header from './components/Header';
 
 const foodList : string[] = [
   'Seafood Fried Rice - Selera',
@@ -23,38 +25,24 @@ function getNextMealIdea() : string  {
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
   const [modalVisible, setModalVisible] = useState(true);
+
   return (
     <View style={styles.container}>
+
       <StatusBar style="auto" />
-      <View style={styles.card}>
-        <TouchableOpacity
-          onPress={() => {
-            setModalVisible(true);
-          }}
-        >
-          <View style={styles.lunchImageWrapper}>
-            <ImageBackground 
-              source={require('./assets/lunch.jpg')} 
-              resizeMode="cover" 
-              style={styles.lunchImage}
-              imageStyle={styles.lunchImageSrc}>
-            </ImageBackground>
-          </View>
-        </TouchableOpacity>
-      </View>
+
+      <Header setModalVisible={setModalVisible}/>
+
       <FoodSuggestion randomFood={randomFood} />
-      <TouchableOpacity
-        style={styles.generateButton}
-        onPress={() => {
-          setRandomFood(getNextMealIdea());
-        }}
-      >
-        <Text style={styles.generateButtonText}>Click Me</Text>
-      </TouchableOpacity>
+
+      <GenerateButton 
+        setRandomFood={() => { setRandomFood(getNextMealIdea()) }} />
+
       <SettingsModal 
         foodList={foodList} 
         modalVisible={modalVisible} 
         setModalVisible={setModalVisible} />
+
     </View>
   );
 }
@@ -64,42 +52,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#111',
     alignItems: 'center'
-  },
-  generateButton: {
-    marginTop: 20,
-    width: '70%',
-    backgroundColor: "#FFF",
-    borderRadius: 50,
-    padding: 15,
-    borderColor: '#FFC106',
-    borderWidth: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  generateButtonText: {
-    fontSize: 18,
-    fontFamily: 'normal',
-    fontWeight: '600',
-    letterSpacing: 1.5
-  },
-  card: {
-    backgroundColor: '#FFC106',
-    width: '100%',
-    paddingTop: 60,
-    borderBottomEndRadius: 0,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  lunchImageWrapper: {
-    marginBottom: -125,
-  },
-  lunchImage: {
-    height: 250,
-    width: 250
-  },
-  lunchImageSrc: { 
-    borderRadius: 125,
-    borderColor: '#FFC106',
-    borderWidth: 5
   }
 });
