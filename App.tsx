@@ -25,9 +25,8 @@ function getNextMealIdea(foodMap : object) : string  {
 
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [foodMap, setFoodMap] = useState(initialFoodMap);
-  console.log("root foodMap", foodMap);
   return (
     <View style={styles.container}>
 

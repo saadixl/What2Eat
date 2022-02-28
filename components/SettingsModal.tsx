@@ -2,9 +2,9 @@ import React,  { useState } from 'react';
 import { Modal, Text, TextInput, View, Pressable, StyleSheet } from 'react-native';
 import FoodOption from './FoodOption';
 
-function renderFoodOptions(foodMap : any) {
+function renderFoodOptions(foodMap : any, deleteOption : any) {
     return Object.keys(foodMap).map((option: string, i: number) => {
-        return <FoodOption key={i}>
+        return <FoodOption deleteOption={deleteOption} option={option} key={i}>
             {option}
         </FoodOption>;
     });
@@ -24,7 +24,14 @@ export default function SettingsModal(props : any) {
         }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    {renderFoodOptions(foodMap)}
+                    {renderFoodOptions(foodMap, (option : string) => {
+                      delete foodMap[option];
+                      const updatedFoodMap = {
+                        ...foodMap
+                      };
+                      setFoodMap(updatedFoodMap);
+                      props.setFoodMap(updatedFoodMap);
+                    })}
                     <TextInput
                       onChangeText={onChangeText}
                       value={text}
@@ -39,6 +46,7 @@ export default function SettingsModal(props : any) {
                         };
                         setFoodMap(updatedFoodMap);
                         props.setFoodMap(updatedFoodMap);
+                        onChangeText('');
                       }}
                     >
                     <Text style={styles.textStyle}>Add new option</Text>

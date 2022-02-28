@@ -3,10 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function FoodOption(props : any) {
+    const { option, deleteOption } = props;
     return (
         <View style={styles.wrapper}>
             <Text style={styles.optionText}>
-                {props.children} <Ionicons style={styles.icon} name="md-close-circle" size={16} color="#d9534f" />
+                {props.children} <Ionicons onPress={() => {
+                    deleteOption(option);
+                }} style={styles.icon} name="md-close-circle" size={16} color="#d9534f" />
             </Text>
         </View>
     );
