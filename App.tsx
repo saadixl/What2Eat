@@ -16,6 +16,17 @@ let initialFoodMap : object = {
   'Ayam Gebrek': true
 };
 
+function getCachedFoodMap() {
+  const foodMapStr = localStorage.getItem('foodMap');
+    if(foodMapStr) {
+      const foodMap = JSON.parse(foodMapStr);
+      if(foodMap && Object.keys(foodMap).length > 0) {
+        return foodMap;
+      }
+    }
+    return null;
+}
+
 function getNextMealIdea(foodMap : object) : string {
   const foodList = Object.keys(foodMap);
   const len = foodList.length;
@@ -26,7 +37,8 @@ function getNextMealIdea(foodMap : object) : string {
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
   const [modalVisible, setModalVisible] = useState(false);
-  const [foodMap, setFoodMap] = useState(initialFoodMap);
+  const [foodMap, setFoodMap] = useState(getCachedFoodMap() || initialFoodMap);
+
   return (
     <View style={styles.container}>
 

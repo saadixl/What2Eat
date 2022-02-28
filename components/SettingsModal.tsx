@@ -31,6 +31,7 @@ export default function SettingsModal(props : any) {
                       };
                       setFoodMap(updatedFoodMap);
                       props.setFoodMap(updatedFoodMap);
+                      localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
                     })}
                     <TextInput
                       onChangeText={onChangeText}
@@ -46,6 +47,7 @@ export default function SettingsModal(props : any) {
                         };
                         setFoodMap(updatedFoodMap);
                         props.setFoodMap(updatedFoodMap);
+                        localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
                         onChangeText('');
                       }}
                     >
