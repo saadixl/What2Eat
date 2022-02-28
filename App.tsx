@@ -31,15 +31,20 @@ function FoodOption(props : any) {
   return (
     <View style={{
       backgroundColor: '#f0ad4e',
-      padding: 10,
-      borderRadius: 20,
-      marginBottom: 5
+      padding: 15,
+      borderRadius: 10,
+      marginBottom: 5,
+      width: '100%'
     }}>
       <Text style={{
-        fontSize: 12,
-        textAlign: 'center'
+        fontSize: 14,
+        textAlign: 'left'
       }}>
-        {props.children} <Ionicons name="md-trash" size={16} color="#d9534f" />
+        {props.children} <Ionicons style={{
+          position: 'absolute',
+          top: 5,
+          right: 5
+        }} name="md-close-circle" size={16} color="#d9534f" />
       </Text>
     </View>
   );
@@ -47,7 +52,7 @@ function FoodOption(props : any) {
 
 export default function App() {
   const [randomFood, setRandomFood] = useState('Do you wanna know what to eat for lunch?');
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -169,11 +174,13 @@ const styles = StyleSheet.create({
     borderWidth: 5
   },
   input: {
-    height: 40,
-    marginBottom: 10,
+    height: 50,
+    marginTop: 10,
+    marginBottom: 5,
     borderWidth: 1,
-    padding: 10,
-    borderRadius: 20
+    padding: 15,
+    borderRadius: 10,
+    width: '100%'
   }
 });
 
@@ -182,14 +189,13 @@ const modalStyles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
+    alignItems: "center"
   },
   modalView: {
-    margin: 20,
+    margin: 10,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 10,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -202,13 +208,13 @@ const modalStyles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    padding: 10,
+    padding: 20,
     elevation: 2,
     margin: 5,
     width: '100%'
   },
   buttonOpen: {
-    backgroundColor: "#5cb85c",
+    backgroundColor: '#FFC106'
   },
   buttonClose: {
     backgroundColor: "#292b2c",
