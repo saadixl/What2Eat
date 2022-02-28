@@ -17,13 +17,13 @@ let initialFoodMap : object = {
 };
 
 function getCachedFoodMap() {
-  const foodMapStr = localStorage.getItem('foodMap');
-    if(foodMapStr) {
-      const foodMap = JSON.parse(foodMapStr);
-      if(foodMap && Object.keys(foodMap).length > 0) {
-        return foodMap;
-      }
-    }
+  // const foodMapStr = localStorage.getItem('foodMap');
+  //   if(foodMapStr) {
+  //     const foodMap = JSON.parse(foodMapStr);
+  //     if(foodMap && Object.keys(foodMap).length > 0) {
+  //       return foodMap;
+  //     }
+  //   }
     return null;
 }
 

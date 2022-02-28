@@ -31,7 +31,7 @@ export default function SettingsModal(props : any) {
                       };
                       setFoodMap(updatedFoodMap);
                       props.setFoodMap(updatedFoodMap);
-                      localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
+                      // localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
                     })}
                     <TextInput
                       onChangeText={onChangeText}
@@ -47,7 +47,7 @@ export default function SettingsModal(props : any) {
                         };
                         setFoodMap(updatedFoodMap);
                         props.setFoodMap(updatedFoodMap);
-                        localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
+                        // localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
                         onChangeText('');
                       }}
                     >
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
       padding: 20,
       elevation: 2,
       margin: 5,
-      width: '100%'
+      alignSelf: 'stretch'
     },
     buttonOpen: {
       backgroundColor: '#FFC106'
@@ -111,6 +111,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 15,
         borderRadius: 10,
-        width: '100%'
+        alignSelf: 'stretch'
     }
   });

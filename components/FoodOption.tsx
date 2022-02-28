@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         marginBottom: 5,
-        width: '100%'
+        alignSelf: 'stretch'
     },
     optionText: {
         fontSize: 14,
