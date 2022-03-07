@@ -3,8 +3,8 @@ import { Modal, Text, TextInput, View, Pressable, StyleSheet } from 'react-nativ
 import FoodOption from './FoodOption';
 import { setData } from '../helper/db';
 
-function renderFoodOptions(foodMap : any, deleteOption : any) {
-    return Object.keys(foodMap).map((option: string, i: number) => {
+function renderFoodOptions(foodMap:any={}, deleteOption : any) {
+    return Object.keys(foodMap || {}).map((option: string, i: number) => {
         return <FoodOption deleteOption={deleteOption} option={option} key={i}>
             {option}
         </FoodOption>;
