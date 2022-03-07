@@ -1,6 +1,7 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import { Modal, Text, TextInput, View, Pressable, StyleSheet } from 'react-native';
 import FoodOption from './FoodOption';
+import { setData } from '../helper/db';
 
 function renderFoodOptions(foodMap : any, deleteOption : any) {
     return Object.keys(foodMap).map((option: string, i: number) => {
@@ -12,8 +13,13 @@ function renderFoodOptions(foodMap : any, deleteOption : any) {
 
 export default function SettingsModal(props : any) {
     const { modalVisible, setModalVisible } = props;
-    const [foodMap, setFoodMap] = useState(props.foodMap);
+    const [foodMap, setFoodMap] = useState({});
     const [text, onChangeText] = useState('');
+
+    useEffect(() => {
+      setFoodMap(props.foodMap);
+    }, [props.foodMap]); // Update child state, when props also updated
+
     return (
         <Modal
             animationType="slide"
@@ -31,7 +37,7 @@ export default function SettingsModal(props : any) {
                       };
                       setFoodMap(updatedFoodMap);
                       props.setFoodMap(updatedFoodMap);
-                      // localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
+                      setData('foodMap', updatedFoodMap);
                     })}
                     <TextInput
                       onChangeText={onChangeText}
@@ -47,7 +53,7 @@ export default function SettingsModal(props : any) {
                         };
                         setFoodMap(updatedFoodMap);
                         props.setFoodMap(updatedFoodMap);
-                        // localStorage.setItem('foodMap', JSON.stringify(updatedFoodMap));
+                        setData('foodMap', updatedFoodMap);
                         onChangeText('');
                       }}
                     >
